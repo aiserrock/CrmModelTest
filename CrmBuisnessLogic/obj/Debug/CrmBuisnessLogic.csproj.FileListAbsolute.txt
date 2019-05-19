@@ -1,0 +1,12 @@
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\CrmBuisnessLogic.dll.config
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\CrmBuisnessLogic.dll
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\CrmBuisnessLogic.pdb
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.dll
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.xml
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csprojAssemblyReference.cache
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CoreCompileInputs.cache
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CopyComplete
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.dll
+C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.pdb
