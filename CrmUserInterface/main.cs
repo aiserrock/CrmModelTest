@@ -49,7 +49,7 @@ namespace CrmUserInterface
             var form = new CustomerForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                db.Customers.Add(form.customer);
+                db.Customers.Add(form.Customer);
                 db.SaveChanges();
             }
         }
@@ -59,7 +59,7 @@ namespace CrmUserInterface
             var form = new SellerForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                db.Sellers.Add(form.seller);
+                db.Sellers.Add(form.Seller);
                 db.SaveChanges();
             }
         }
@@ -69,7 +69,7 @@ namespace CrmUserInterface
             var form = new ProductForm();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                db.Products.Add(form.product);
+                db.Products.Add(form.Product);
                 db.SaveChanges();
             }
         }

@@ -14,10 +14,15 @@ namespace CrmUserInterface
     public partial class CustomerForm : Form
     {
 
-        public Customer customer { get; set; }
+        public Customer Customer { get; set; }
         public CustomerForm()
         {
             InitializeComponent();
+        }
+        public CustomerForm(Customer customer):this()
+        {
+            Customer = customer ?? new Customer();
+            textBox1.Text = customer.Name;
         }
 
     
@@ -28,10 +33,8 @@ namespace CrmUserInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            customer = new Customer()
-            {
-                Name = textBox1.Text
-            };
+            Customer = Customer ?? new Customer();
+            Customer.Name = textBox1.Text;
             Close();
         }
     }

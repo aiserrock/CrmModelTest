@@ -14,10 +14,15 @@ namespace CrmUserInterface
     public partial class SellerForm : Form
     {
 
-        public Seller seller { get; set; }
+        public Seller Seller { get; set; }
         public SellerForm()
         {
             InitializeComponent();
+        }
+        public SellerForm(Seller seller) : this()
+        {
+            Seller = seller;
+            textBox1.Text = Seller.Name;
         }
 
     
@@ -28,10 +33,8 @@ namespace CrmUserInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            seller = new Seller()
-            {
-                Name = textBox1.Text
-            };
+            Seller = Seller ?? new Seller();
+            Seller.Name = textBox1.Text;
             Close();
         }
     }
