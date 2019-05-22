@@ -13,7 +13,8 @@ namespace CrmBuisnessLogic.Model
         public Dictionary<Product, int> Products { get; set; }
         public Cart(Customer customer)
         {
-            Customer = Customer;
+            Customer = customer;
+            Products = new Dictionary<Product, int>();
         }
         public void Add(Product product)
         {
@@ -36,6 +37,15 @@ namespace CrmBuisnessLogic.Model
                     yield return product;
                 }
             }
+        }
+        public List<Product> GetAll()
+        {
+            var result = new List<Product>();
+            foreach(Product i in this)
+            {
+                result.Add(i);
+            }
+            return result;
         }
     }
 }

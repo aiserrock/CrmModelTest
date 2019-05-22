@@ -10,3 +10,15 @@ C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisn
 C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CopyComplete
 C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.dll
 C:\Users\superUser\source\repos\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.pdb
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\CrmBuisnessLogic.dll.config
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\CrmBuisnessLogic.dll
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\CrmBuisnessLogic.pdb
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.dll
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.xml
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csprojAssemblyReference.cache
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CoreCompileInputs.cache
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CopyComplete
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.dll
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.pdb
