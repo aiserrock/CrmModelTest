@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace CrmBuisnessLogic.Model
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Product
     {
+        /// <summary>
+        /// 333
+        /// </summary>
         public int ProductId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
