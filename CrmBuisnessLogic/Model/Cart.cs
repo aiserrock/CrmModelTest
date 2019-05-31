@@ -15,13 +15,14 @@ namespace CrmBuisnessLogic.Model
         public Cart(Customer customer)
         {
             Customer = customer;
+            //продукт и его колличесвто
             Products = new Dictionary<Product, int>();
         }
         public void Add(Product product)
         {
             if(Products.TryGetValue(product,out int count))
             {
-                Products[product] = ++count;
+              Products[product] = ++count;
             }
             else
             {
