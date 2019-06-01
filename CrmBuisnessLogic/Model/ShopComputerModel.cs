@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CrmBuisnessLogic.Model
 {
     public class ShopComputerModel
     {
+        bool isWorking = false;//флаг нужен для метода CreateCarts(там бесконечный цикл,условие выхода из цикла)
+        //переключается в методе Start()
         Generator Generator = new Generator();
         Random random=new Random();
         public List<CashDesk> CashDesks { get; set; }= new List<CashDesk>();
@@ -31,37 +34,72 @@ namespace CrmBuisnessLogic.Model
             }
             
         }
+        //генерирование и обработка классов
         public void Start()
         {
-            var customers = Generator.GetNewCustomers(10);
-            var carts = new Queue<Cart>();
-            //нагружаем покупателей
-            foreach(var customer in customers)
+            isWorking = true;//запустили метод CreateCarts в отдельном потоке на выполнение
+            //метод будет работать до тех пор пока мы его самостоятельно не остановим
+            Task.Run(() => CreateCarts(10, 1000));
+            //для каждого потока отдельно запускаем выполнение метода CashDeskWork
+            //создание коллекции задач,внутри каждой задачи находится касса которая бесконечно работает в своем собственном потоке
+            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c,1000)));
+            foreach(var task in cashDeskTasks)
             {
-                //покупателей считаем корзинами
-                var cart = new Cart(customer);
-                //нагружаем покупателя рандомным кол-вом продуктов
-                foreach(var prod in Generator.GetRandomProducts(10, 30))
+                task.Start();
+            }
+        }
+
+        public void Stop()
+        {
+            isWorking = false;
+        }
+        /// <summary>
+        /// Обработка (работа кассы)
+        /// </summary>
+        /// <param name="cashDesk">касса</param>
+        /// <param name="sleep">время удержания потока</param>
+        private void CashDeskWork(CashDesk cashDesk,int sleep)
+        {
+            while (isWorking)
+            {
+                if (cashDesk.Count > 0)
                 {
-                    cart.Add(prod);
+                    cashDesk.Dequeue();
+                    Thread.Sleep(sleep);
                 }
-                carts.Enqueue(cart);
             }
-
            
-             
-            while(carts.Count>0)
+        }
+      
+        /// <summary>
+        ///Функция создания потока клиентов и раскидывание их по очередям рабоатет в отдельном п отоке
+        /// </summary>
+        /// <param name="customerCounts">параметро отвечает за ко-во клиентов</param>
+        /// <param name="sleep">Thread.Sleep(sleep)</param>
+        private void CreateCarts(int customerCounts,int sleep)
+        {
+            while (isWorking)
             {
-                var cash = CashDesks[random.Next(CashDesks.Count - 1)];//TODO:
-                cash.Enqueue(carts.Dequeue()) ;
+                //генерация клиентов
+                var customers = Generator.GetNewCustomers(customerCounts);
+                
 
-            }
+                foreach (var customer in customers)
+                {
+                    var cart = new Cart(customer);
+                    foreach(var product in Generator.GetRandomProducts(10, 30))
+                    {
+                        cart.Add(product);
+                    }
+                    var cash = CashDesks[random.Next(CashDesks.Count - 1)];
+                    cash.Enqueue(cart);
 
-            while (true)
-            {
-                var cash = CashDesks[ random.Next(CashDesks.Count - 1)];//TODO:
-                var money =cash.Dequeue();
+                }
+                Thread.Sleep(sleep);
             }
+            
+           
+
         }
     }
 }

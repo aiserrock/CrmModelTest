@@ -16,6 +16,10 @@ namespace CrmBuisnessLogic.Model
         CrmContext db = new CrmContext();
         //далее понадобиться чтобы определять очередь с наименьшим кол-вом
         public int Count => Queue.Count;
+        /// <summary>
+        /// был ли закрыт чек
+        /// </summary>
+        public event EventHandler<Check> CheckClosed;
         public int MaxQueueLenght { get; set; }
         //счетчик для учета не ставших ждатьл очередь очередь customer
         public int ExitCustomer { get; set; }
@@ -109,11 +113,18 @@ namespace CrmBuisnessLogic.Model
                         sum += product.Price;
                     }
                 }
+                check.Price = sum;
                 if (!IsModel)
                 {
                     //засунуть в базу
                     db.SaveChanges();
                 }
+                //рассыылка о событии всем подписчикамоооо
+                CheckClosed?.Invoke(this, check);
+                //if (CheckClosed != null)
+                //{
+                //    CheckClosed(this, check);
+                //}
 
             }
             return sum;
