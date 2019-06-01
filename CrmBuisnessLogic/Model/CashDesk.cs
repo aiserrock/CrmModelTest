@@ -13,7 +13,9 @@ namespace CrmBuisnessLogic.Model
     public class CashDesk
     {
         //контекст базы данных
-        CrmContext db = new CrmContext(); 
+        CrmContext db = new CrmContext();
+        //далее понадобиться чтобы определять очередь с наименьшим кол-вом
+        public int Count => Queue.Count;
         public int MaxQueueLenght { get; set; }
         //счетчик для учета не ставших ждатьл очередь очередь customer
         public int ExitCustomer { get; set; }
@@ -50,6 +52,10 @@ namespace CrmBuisnessLogic.Model
         public decimal Dequeue()
         {
             decimal sum = 0;
+            if (Queue.Count == 0)
+            {
+                return 0;
+            }
             var card = Queue.Dequeue();
             if (card != null)
             {
