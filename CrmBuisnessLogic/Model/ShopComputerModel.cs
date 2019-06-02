@@ -13,6 +13,12 @@ namespace CrmBuisnessLogic.Model
         //переключается в методе Start()
         Generator Generator = new Generator();
         Random random=new Random();
+        List<Task> tasks = new List<Task>();
+        //тоже самое что и  в Stop();
+        CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+        CancellationToken token;
+
+
         public List<CashDesk> CashDesks { get; set; }= new List<CashDesk>();
         public List<Cart> Carts { get; set; } = new List<Cart>();
         public List<Check> Checks { get; set; }=new List<Check>();
@@ -20,18 +26,25 @@ namespace CrmBuisnessLogic.Model
         public Queue<Seller> Sellers { get; set; } = new Queue<Seller>();
         public int CustomerSpeed { get; set; } = 100;
         public int CashDeskSpeed { get; set; } = 100;
+
+       
+
         public ShopComputerModel()
         {
             var sellers = Generator.GetNewSellers(20);
             Generator.GetNewProducts(1000);
             Generator.GetNewCustomers(100);
-            foreach(var seller in sellers)
+
+            cancelTokenSource = new CancellationTokenSource();
+            token = cancelTokenSource.Token;
+
+            foreach (var seller in sellers)
             {
                 Sellers.Enqueue(seller);
             }
             for(int i = 0; i < 3; i++)
             {
-                CashDesks.Add(new CashDesk(CashDesks.Count, Sellers.Dequeue()));
+                CashDesks.Add(new CashDesk(CashDesks.Count, Sellers.Dequeue(),null));
 
             }
             
@@ -41,33 +54,39 @@ namespace CrmBuisnessLogic.Model
         {
             isWorking = true;//запустили метод CreateCarts в отдельном потоке на выполнение
             //метод будет работать до тех пор пока мы его самостоятельно не остановим
-            Task.Run(() => CreateCarts(10, CustomerSpeed));
+            
+            
+
+            tasks.Add(new Task(() => CreateCarts(10,token)));
             //для каждого потока отдельно запускаем выполнение метода CashDeskWork
             //создание коллекции задач,внутри каждой задачи находится касса которая бесконечно работает в своем собственном потоке
-            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, CashDeskSpeed)));
-            foreach(var task in cashDeskTasks)
+            tasks.AddRange(CashDesks.Select(c => new Task(() => CashDeskWork(c,token))));
+            foreach(var task in tasks)
             {
                 task.Start();
             }
+           
         }
 
         public void Stop()
         {
-            isWorking = false;
+                //непонятная хрень с stacoverflov для закрытия потоков
+                cancelTokenSource.Cancel();
+         
         }
         /// <summary>
         /// Обработка (работа кассы)
         /// </summary>
         /// <param name="cashDesk">касса</param>
         /// <param name="sleep">время удержания потока</param>
-        private void CashDeskWork(CashDesk cashDesk,int sleep)
+        private void CashDeskWork(CashDesk cashDesk,CancellationToken token)
         {
-            while (isWorking)
+            while (!token.IsCancellationRequested)//while isWorking
             {
                 if (cashDesk.Count > 0)
                 {
                     cashDesk.Dequeue();
-                    Thread.Sleep(sleep);
+                    Thread.Sleep(CashDeskSpeed);
                 }
             }
            
@@ -78,9 +97,9 @@ namespace CrmBuisnessLogic.Model
         /// </summary>
         /// <param name="customerCounts">параметро отвечает за ко-во клиентов</param>
         /// <param name="sleep">Thread.Sleep(sleep)</param>
-        private void CreateCarts(int customerCounts,int sleep)
+        private void CreateCarts(int customerCounts,CancellationToken token)//while isWorking
         {
-            while (isWorking)
+            while (!token.IsCancellationRequested)
             {
                 //генерация клиентов
                 var customers = Generator.GetNewCustomers(customerCounts);
@@ -97,7 +116,7 @@ namespace CrmBuisnessLogic.Model
                     cash.Enqueue(cart);
 
                 }
-                Thread.Sleep(sleep);
+                Thread.Sleep(CustomerSpeed);
             }
             
            

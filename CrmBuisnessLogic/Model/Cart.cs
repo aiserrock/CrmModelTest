@@ -12,6 +12,8 @@ namespace CrmBuisnessLogic.Model
     {
         public Customer Customer { get; set; }
         public Dictionary<Product, int> Products { get; set; }
+        //сумма корзины
+        public decimal Price => GetAll().Sum(p=>p.Price);
         public Cart(Customer customer)
         {
             Customer = customer;

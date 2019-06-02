@@ -13,7 +13,7 @@ namespace CrmBuisnessLogic.Model
     public class CashDesk
     {
         //контекст базы данных
-        CrmContext db = new CrmContext();
+        CrmContext db;
         //далее понадобиться чтобы определять очередь с наименьшим кол-вом
         public int Count => Queue.Count;
         /// <summary>
@@ -33,18 +33,19 @@ namespace CrmBuisnessLogic.Model
  //поумолчанию в базу данных не сохраняем faasle
         public bool IsModel { get; set; }
 
-        public CashDesk(int number,Seller seller)
+        public CashDesk(int number,Seller seller,CrmContext db)
         {
             Number = number;
             Seller = seller;
             Queue = new Queue<Cart>();
             IsModel = true;
             MaxQueueLenght = 10;
+            this.db = db ?? new CrmContext();
         }
         //встал в  очередь человек
         public void Enqueue(Cart cart)
         {
-            if (Queue.Count <= MaxQueueLenght)
+            if (Queue.Count < MaxQueueLenght)
             {
                 Queue.Enqueue(cart);
             }

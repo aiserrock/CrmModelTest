@@ -35,12 +35,17 @@ namespace CrmUserInterface
             QueueLenght = new ProgressBar();
             LeaveCustomersCount = new Label();
 
-
+            CashDeskName.AutoSize = true;
+            CashDeskName.Location = new System.Drawing.Point(x, y);
+            CashDeskName.Name = "label" + number;
+            CashDeskName.Size = new System.Drawing.Size(35, 13);
+            CashDeskName.TabIndex = number;
+            CashDeskName.Text = cashDesk.ToString();
 
             // 
             // numericUpDown
             // 
-            Price.Location = new System.Drawing.Point(x+70, y);
+            Price.Location = new System.Drawing.Point(x+90, y);
             Price.Name = "numericUpDown"+number;
             Price.Size = new System.Drawing.Size(120, 20);
             Price.TabIndex = number;
@@ -50,7 +55,7 @@ namespace CrmUserInterface
             // 
             // progressBar1
             // 
-            QueueLenght.Location = new System.Drawing.Point(x+3, y);
+            QueueLenght.Location = new System.Drawing.Point(x+300, y);
             QueueLenght.Maximum = cashDesk.MaxQueueLenght;
             QueueLenght.Name = "progressBar"+number;
             QueueLenght.Size = new System.Drawing.Size(100, 23);
@@ -74,12 +79,15 @@ namespace CrmUserInterface
         {
             //обновление формы
             //обернуть в  инвок и деллегат иначе эксппшен(доступ из другогго потока)
-            Price.Invoke((Action)delegate 
+            if (!Price.IsDisposed)
             {
-                Price.Value += e.Price;
-                QueueLenght.Value = cashDesk.Count;
-                LeaveCustomersCount.Text = cashDesk.ExitCustomer.ToString();
-            });
+                Price.Invoke((Action)delegate
+                {
+                    Price.Value += e.Price;
+                    QueueLenght.Value = cashDesk.Count;
+                    LeaveCustomersCount.Text = cashDesk.ExitCustomer.ToString();
+                });
+            }
         }
     }
 }
