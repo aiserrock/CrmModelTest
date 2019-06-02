@@ -22,3 +22,5 @@ C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CoreCo
 C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.CopyComplete
 C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.dll
 C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.pdb
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.Migrations.update020619.resources
+C:\GitHub\CrmModelTest\CrmBuisnessLogic\obj\Debug\CrmBuisnessLogic.csproj.GenerateResource.cache
