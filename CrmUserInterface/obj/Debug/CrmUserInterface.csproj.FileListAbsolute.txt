@@ -40,3 +40,4 @@ C:\GitHub\CrmModelTest\CrmUserInterface\obj\Debug\CrmUserInterface.csproj.CopyCo
 C:\GitHub\CrmModelTest\CrmUserInterface\obj\Debug\CrmUserInterface.exe
 C:\GitHub\CrmModelTest\CrmUserInterface\obj\Debug\CrmUserInterface.pdb
 C:\GitHub\CrmModelTest\CrmUserInterface\obj\Debug\CrmUserInterface.ProductForm.resources
+C:\GitHub\CrmModelTest\CrmUserInterface\obj\Debug\CrmUserInterface.ModelForm.resources

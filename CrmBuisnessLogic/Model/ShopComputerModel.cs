@@ -18,6 +18,8 @@ namespace CrmBuisnessLogic.Model
         public List<Check> Checks { get; set; }=new List<Check>();
         public List<Sell> Sell { get; set; } = new List<Sell>();
         public Queue<Seller> Sellers { get; set; } = new Queue<Seller>();
+        public int CustomerSpeed { get; set; } = 100;
+        public int CashDeskSpeed { get; set; } = 100;
         public ShopComputerModel()
         {
             var sellers = Generator.GetNewSellers(20);
@@ -39,10 +41,10 @@ namespace CrmBuisnessLogic.Model
         {
             isWorking = true;//запустили метод CreateCarts в отдельном потоке на выполнение
             //метод будет работать до тех пор пока мы его самостоятельно не остановим
-            Task.Run(() => CreateCarts(10, 1000));
+            Task.Run(() => CreateCarts(10, CustomerSpeed));
             //для каждого потока отдельно запускаем выполнение метода CashDeskWork
             //создание коллекции задач,внутри каждой задачи находится касса которая бесконечно работает в своем собственном потоке
-            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c,1000)));
+            var cashDeskTasks = CashDesks.Select(c => new Task(() => CashDeskWork(c, CashDeskSpeed)));
             foreach(var task in cashDeskTasks)
             {
                 task.Start();
@@ -91,7 +93,7 @@ namespace CrmBuisnessLogic.Model
                     {
                         cart.Add(product);
                     }
-                    var cash = CashDesks[random.Next(CashDesks.Count - 1)];
+                    var cash = CashDesks[random.Next(CashDesks.Count)];
                     cash.Enqueue(cart);
 
                 }

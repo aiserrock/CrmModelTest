@@ -23,6 +23,7 @@ namespace CrmBuisnessLogic.Model
         public int MaxQueueLenght { get; set; }
         //счетчик для учета не ставших ждатьл очередь очередь customer
         public int ExitCustomer { get; set; }
+        //номер кассы
         public int Number { get; set; }
         public Seller Seller { get; set; }
         //считаем в очереди корзины,к каждой корзине привязан свой customer
@@ -38,6 +39,7 @@ namespace CrmBuisnessLogic.Model
             Seller = seller;
             Queue = new Queue<Cart>();
             IsModel = true;
+            MaxQueueLenght = 10;
         }
         //встал в  очередь человек
         public void Enqueue(Cart cart)
@@ -128,6 +130,10 @@ namespace CrmBuisnessLogic.Model
 
             }
             return sum;
+        }
+        public override string ToString()
+        {
+            return $"Cashbox №{Number}";
         }
     }
 }
