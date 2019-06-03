@@ -114,9 +114,21 @@ namespace CrmUserInterface
                 UpdateLists();
             }
         }
+        //по дблклику выкидываем из корзины продукт
+        private void listBox2_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedItem is Product product)
+            {
+
+                cart.Delete(product);
+                listBox2.Items.Remove(product);
+                UpdateLists();
+            }
+        }
         //обновление элементов
         private void UpdateLists()
         {
+          
             listBox2.Items.Clear();
             listBox2.Items.AddRange(cart.GetAll().ToArray());
             label1.Text = "Amount: " + cart.Price;

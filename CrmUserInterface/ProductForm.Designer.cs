@@ -65,7 +65,7 @@
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 2;
-            this.buttonOK.Text = "OK";
+            this.buttonOK.Text = "Input";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
@@ -123,6 +123,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.inputNameTextBox);
             this.Name = "ProductForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ProductForm";
             this.Load += new System.EventHandler(this.CustomerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

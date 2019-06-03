@@ -65,7 +65,7 @@ namespace CrmUserInterface
             // 
             // change
             // 
-            this.change.Location = new System.Drawing.Point(272, 413);
+            this.change.Location = new System.Drawing.Point(284, 415);
             this.change.Name = "change";
             this.change.Size = new System.Drawing.Size(75, 23);
             this.change.TabIndex = 2;
@@ -81,6 +81,7 @@ namespace CrmUserInterface
             this.delete.TabIndex = 3;
             this.delete.Text = "Delete";
             this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // Catalog
             // 
@@ -92,6 +93,7 @@ namespace CrmUserInterface
             this.Controls.Add(this.add);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Catalog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Catalog";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

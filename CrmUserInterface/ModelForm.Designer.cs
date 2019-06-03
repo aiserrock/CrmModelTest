@@ -39,7 +39,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(690, 398);
+            this.button1.Location = new System.Drawing.Point(628, 403);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -96,27 +96,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(507, 15);
+            this.label1.Location = new System.Drawing.Point(441, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.Size = new System.Drawing.Size(137, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Speed clients";
+            this.label1.Text = "Speed clients(lower - faster)";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(497, 41);
+            this.label2.Location = new System.Drawing.Point(431, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.Size = new System.Drawing.Size(147, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Speed cashbox";
+            this.label2.Text = "Speed cashbox(lower - faster)";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // ModelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(715, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown2);

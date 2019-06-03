@@ -31,6 +31,17 @@ namespace CrmBuisnessLogic.Model
                 Products.Add(product, 1);
             }
         }
+        public void Delete(Product product)
+        {
+            if (Products.TryGetValue(product, out int count))
+            {
+                Products[product] = --count;
+            }
+            else
+            {
+                Products.Remove(product);
+            }
+        }
 
         public IEnumerator GetEnumerator()
         {

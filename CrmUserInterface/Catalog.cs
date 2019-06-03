@@ -23,6 +23,12 @@ namespace CrmUserInterface
             this.set = set;
             set.Load();
             dataGridView1.DataSource = set.Local.ToBindingList();
+            if (typeof(T) == typeof(Check))
+            {
+                add.Visible = false;
+                change.Visible = false;
+                delete.Visible = false;
+            }
         }
         private void Catalog_Load(object sender, DataGridViewCellEventArgs e)
         {
@@ -36,27 +42,41 @@ namespace CrmUserInterface
 
         private void add_Click(object sender, EventArgs e)
         {
+
             if (typeof(T) == typeof(Product))
             {
-                //var form = new ProductForm();
-                //if (form.ShowDialog() == DialogResult.OK)
-                //{
-                //    db.Sellers.Add(form.seller);
-                //    db.SaveChanges();
-                //}
+                var form = new ProductForm();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    db.Products.Add(form.Product);
+                    db.SaveChanges();
+                }
             }
-            else if(typeof(T) == typeof(Seller))
+            else if (typeof(T) == typeof(Seller))
             {
+                var form = new SellerForm();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    db.Sellers.Add(form.Seller);
+                    db.SaveChanges();
+                }
 
             }
             else if (typeof(T) == typeof(Customer))
             {
+                var form = new CustomerForm();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    db.Customers.Add(form.Customer);
+                    db.SaveChanges();
+                }
 
             }
         }
 
         private void change_Click(object sender, EventArgs e)
         {
+
             var id = dataGridView1.SelectedRows[0].Cells[0].Value;
 
             if (typeof(T) == typeof(Product))
@@ -72,7 +92,7 @@ namespace CrmUserInterface
                         dataGridView1.Update();
                     }
                 }
-                
+
             }
             else if (typeof(T) == typeof(Seller))
             {
@@ -105,6 +125,52 @@ namespace CrmUserInterface
 
             }
         }
-        
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+
+            var id = dataGridView1.SelectedRows[0].Cells[0].Value;
+
+            if (typeof(T) == typeof(Product))
+            {
+                var product = set.Find(id) as Product;
+                if (product != null)
+                {
+
+                    db.Products.Remove(product);
+                    db.SaveChanges();
+                    dataGridView1.Update();
+
+                }
+
+            }
+            else if (typeof(T) == typeof(Seller))
+            {
+                var seller = set.Find(id) as Seller;
+                if (seller != null)
+                {
+
+                    db.Sellers.Remove(seller);
+                    db.SaveChanges();
+                    dataGridView1.Update();
+
+                }
+
+            }
+            else if (typeof(T) == typeof(Customer))
+            {
+                var customer = set.Find(id) as Customer;
+                if (customer != null)
+                {
+                    var form = new CustomerForm(customer);
+                    db.Customers.Remove(customer);
+                    db.SaveChanges();
+                    dataGridView1.Update();
+                }
+
+            }
+
+        }
+
     }
 }

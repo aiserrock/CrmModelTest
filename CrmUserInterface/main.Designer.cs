@@ -146,6 +146,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(232, 342);
             this.listBox2.TabIndex = 2;
+            this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
             // label1
             // 
@@ -190,6 +191,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);

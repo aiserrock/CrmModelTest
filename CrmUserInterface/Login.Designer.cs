@@ -68,6 +68,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
