@@ -1,3 +1,19 @@
+Simple CRM system for store warehouse
+Was created in Visual Studio IDE on C# + Entity framework
+
+Простая CRM-система для склада магазина
+Был создан в Visual Studio IDE на платформе C # + Entity.
+
+
+
+
+
+
+
+
+
+
+log from console(it is realy neeed for something but i fogot why):
 view->other window->concole dispetcher
 PM> add-migration update020619
 No migrations configuration type was found in the assembly 'CrmUserInterface'. (In Visual Studio you can use the Enable-Migrations command from Package Manager Console to add a migrations configuration).
